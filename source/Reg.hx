@@ -10,9 +10,13 @@ import flixel.util.FlxSave;
 class Reg
 {
 	public static var metabolism : Int = 1;
+	public static var metabolismPrice : Int = 100;
 	public static var sphincterStrength : Int = 1;
+	public static var sphincterStrengthPrice : Int = 100;
 	public static var stomachSize : Int = 1;
+	public static var stomachSizePrice : Int = 100;
 	public static var food : Int = 1;
+	public static var foodPrice : Int = 100;
 	public static var cash : Int = 0;
 
 

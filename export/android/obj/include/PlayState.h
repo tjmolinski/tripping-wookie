@@ -9,6 +9,7 @@
 HX_DECLARE_CLASS0(CloudManager)
 HX_DECLARE_CLASS0(EndMenu)
 HX_DECLARE_CLASS0(ExtendedSprite)
+HX_DECLARE_CLASS0(GameState)
 HX_DECLARE_CLASS0(Hero)
 HX_DECLARE_CLASS0(PlayState)
 HX_DECLARE_CLASS1(flixel,FlxBasic)
@@ -62,12 +63,17 @@ class HXCPP_CLASS_ATTRIBUTES  PlayState_obj : public ::flixel::FlxState_obj{
 		::flixel::effects::particles::FlxEmitter emitter;
 		::EndMenu endMenu;
 		::CloudManager cloudManager;
+		::GameState currentState;
 		::flixel::group::FlxTypedGroup container;
+		::flixel::group::FlxGroup hitContainer;
 		virtual Void hitStuff( ::flixel::FlxObject obj1,::flixel::FlxObject obj2);
 		Dynamic hitStuff_dyn();
 
 		virtual Void spawnCashItem( );
 		Dynamic spawnCashItem_dyn();
+
+		virtual Void spawnPizza( );
+		Dynamic spawnPizza_dyn();
 
 		virtual Void spawnPowerDown( );
 		Dynamic spawnPowerDown_dyn();
@@ -75,17 +81,21 @@ class HXCPP_CLASS_ATTRIBUTES  PlayState_obj : public ::flixel::FlxState_obj{
 		virtual Void spawnPowerUp( );
 		Dynamic spawnPowerUp_dyn();
 
-		virtual Void create( );
-
 		virtual int sortByZ( int order,::ExtendedSprite sprite1,::ExtendedSprite sprite2);
 		Dynamic sortByZ_dyn();
 
 		virtual Void addToScene( ::ExtendedSprite object);
 		Dynamic addToScene_dyn();
 
-		virtual Void destroy( );
+		virtual Void create( );
 
 		virtual Void update( );
+
+		virtual Void updatePlaying( );
+		Dynamic updatePlaying_dyn();
+
+		virtual Void updateShop( );
+		Dynamic updateShop_dyn();
 
 };
 

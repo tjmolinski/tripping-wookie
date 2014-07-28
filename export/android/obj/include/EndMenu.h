@@ -45,6 +45,42 @@ class HXCPP_CLASS_ATTRIBUTES  EndMenu_obj : public hx::Object{
 		::flixel::FlxSprite foodBtn;
 		::flixel::text::FlxText playAgain;
 		::flixel::FlxSprite playAgainBtn;
+		virtual int getFoodPrice( );
+		Dynamic getFoodPrice_dyn();
+
+		virtual int getFoodUpgradeAmount( );
+		Dynamic getFoodUpgradeAmount_dyn();
+
+		virtual ::String getFoodString( );
+		Dynamic getFoodString_dyn();
+
+		virtual int getSphincterPrice( );
+		Dynamic getSphincterPrice_dyn();
+
+		virtual int getSphincterUpgradeAmount( );
+		Dynamic getSphincterUpgradeAmount_dyn();
+
+		virtual ::String getSphincterString( );
+		Dynamic getSphincterString_dyn();
+
+		virtual int getStomachPrice( );
+		Dynamic getStomachPrice_dyn();
+
+		virtual int getStomachUpgradeAmount( );
+		Dynamic getStomachUpgradeAmount_dyn();
+
+		virtual ::String getStomachString( );
+		Dynamic getStomachString_dyn();
+
+		virtual int getMetabolismPrice( );
+		Dynamic getMetabolismPrice_dyn();
+
+		virtual int getMetabolismUpgradeAmount( );
+		Dynamic getMetabolismUpgradeAmount_dyn();
+
+		virtual ::String getMetabolismString( );
+		Dynamic getMetabolismString_dyn();
+
 		virtual Void destroy( );
 		Dynamic destroy_dyn();
 

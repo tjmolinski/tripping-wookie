@@ -15,6 +15,11 @@ import flixel.effects.particles.FlxEmitter;
 import flixel.effects.particles.FlxParticle;
 import flixel.group.FlxTypedGroup;
 
+enum GameState {
+	PLAYING;
+	SHOP;
+}
+
 class PlayState extends FlxState {
 	var hero : Hero;
 	var speed : FlxText;
@@ -24,7 +29,7 @@ class PlayState extends FlxState {
 	var powerdowns : FlxGroup;
 	var cashitems : FlxGroup;
 	var pickupBuffer : Float = 0.0;
-	var pickupTimer : Float = 10.0;
+	var pickupTimer : Float = 2.0;
 
 	var brownPixel : FlxParticle;
 	var emitter : FlxEmitter;
@@ -32,25 +37,39 @@ class PlayState extends FlxState {
 	var endMenu : EndMenu;
 	var cloudManager : CloudManager;
 
-	public var container : FlxTypedGroup<ExtendedSprite>;
+	var currentState : GameState;
 
-	//TODO: Implement states with enums
+	public var container : FlxTypedGroup<ExtendedSprite>;
+	public var hitContainer : FlxGroup;
 
 	private function hitStuff(obj1 : FlxObject, obj2 : FlxObject):Void {
-		obj1.kill();
 		if(Type.getClassName(Type.getClass(obj1))=="PowerDown") {
 			hero.ateSpoiledFood();
-		} else if(Type.getClassName(Type.getClass(obj1))=="PowerUp") {
-			hero.ateFood();
+			obj1.kill();
+		//} else if(Type.getClassName(Type.getClass(obj1))=="PowerUp") {
+		} else if(Type.getClassName(Type.getClass(obj1))=="Pizza") {
+			for(touch in FlxG.touches.list) {
+				if(touch.justPressed) {
+					hero.ateFood();
+					hitContainer.remove(obj1);
+					obj1.kill();
+				}
+			}
 		} else {
 			hero.gotCash();
 			cash.text = "Cash: $" + Reg.cash;
+			obj1.kill();
 		}
 	}
 
 	private function spawnCashItem():Void {
 		var pickup : CashItem = cast(cashitems.recycle(), CashItem);
 		pickup.spawn();
+	}
+
+	private function spawnPizza():Void {
+		var pizza : Pizza = new Pizza();
+		hitContainer.add(pizza);
 	}
 
 	private function spawnPowerDown():Void {
@@ -63,10 +82,22 @@ class PlayState extends FlxState {
 		pickup.spawn();
 	}
 
+	private function sortByZ(order : Int, sprite1 : ExtendedSprite, sprite2 : ExtendedSprite) : Int {
+		return FlxSort.byValues(order, sprite1.z, sprite2.z);
+	}
+
+	public function addToScene(object : ExtendedSprite):Void {
+		container.add(object);
+		container.sort(sortByZ);
+	}
+	
+
 	override public function create():Void {
 		super.create();
 
+		currentState = GameState.PLAYING;
 		container = new FlxTypedGroup<ExtendedSprite>();
+		hitContainer = new FlxGroup(100);
 		
 		hero = new Hero(cast(FlxG.width/2, Int), cast(FlxG.height-50, Int));
 		speed = new FlxText(0, 0, FlxG.width, "0 MPH");
@@ -99,8 +130,6 @@ class PlayState extends FlxState {
 		emitter.start(false, 3, .01);
 
 		cloudManager = new CloudManager();
-		//TODO: This needs to happen a few seconds after liftoff
-		cloudManager.enabled = true;
 
 		//TODO: Make more pickups
 		var numPickups : Int = 2;
@@ -134,59 +163,62 @@ class PlayState extends FlxState {
 		add(speed);
 		container.add(hero);
 		add(container);
+		add(hitContainer);
 		container.sort(sortByZ);
-	}
-
-	private function sortByZ(order : Int, sprite1 : ExtendedSprite, sprite2 : ExtendedSprite) : Int {
-		return FlxSort.byValues(order, sprite1.z, sprite2.z);
-	}
-
-	public function addToScene(object : ExtendedSprite):Void {
-		container.add(object);
-		container.sort(sortByZ);
-	}
-	
-	override public function destroy():Void {
-		super.destroy();
 	}
 
 	override public function update():Void {
-		if(endMenu == null) {
-			if(hero.shitSpeed < 0) {
-				//TODO: Implement upgrade menu here
-				endMenu = new EndMenu();
-				emitter.destroy();
-				Reg.level += 1;
-				level.text = "Level: " + Reg.level;
-			} else {
-				speed.text = hero.shitSpeed + " MPH";
-				//TODO: Fix this hack
-				emitter.x = hero.x+22;
-				emitter.y = hero.y+54;
-			}
+		cash.text = "Cash: $" + Reg.cash;
+		switch(currentState) {
+		case GameState.PLAYING:
+			updatePlaying();
+		case GameState.SHOP:
+			updateShop();
+		}
+		super.update();
+	}
 
-			if(pickupBuffer > pickupTimer) {
-				if(FlxRandom.float() < .25) {
-					spawnPowerDown();
-				} else if(FlxRandom.float() < .75) {
-					spawnPowerUp();
-				} else {
-					spawnCashItem();
-				}
-				pickupBuffer = 0;
-			} else {
-				pickupBuffer += FlxG.elapsed;
-			}
-
-			cloudManager.update();
-
-			FlxG.overlap(powerups, hero, hitStuff);
-			FlxG.overlap(powerdowns, hero, hitStuff);
-			FlxG.overlap(cashitems, hero, hitStuff);
+	private function updatePlaying() {
+		if(hero.shitSpeed < 0) {
+			//TODO: Figure better way to get reward for launching and ending
+			Reg.cash += 50;
+			endMenu = new EndMenu();
+			emitter.destroy();
+			Reg.level += 1;
+			level.text = "Level: " + Reg.level;
+			currentState = GameState.SHOP;
+			cloudManager.stopClouds();
 		} else {
-			endMenu.update();
+			speed.text = hero.shitSpeed + " MPH";
+			//TODO: Fix this hack
+			emitter.x = hero.x+22;
+			emitter.y = hero.y+54;
 		}
 
-		super.update();
-	}	
+		if(pickupBuffer > pickupTimer) {
+			if(FlxRandom.float() < .25) {
+				spawnPowerDown();
+			} else if(FlxRandom.float() < .75) {
+				spawnPizza();
+				//spawnPowerUp();
+			} else {
+				spawnCashItem();
+			}
+			pickupBuffer = 0;
+		} else {
+			pickupBuffer += FlxG.elapsed;
+		}
+
+		cloudManager.update();
+
+		FlxG.overlap(powerups, hero, hitStuff);
+		FlxG.overlap(powerdowns, hero, hitStuff);
+		FlxG.overlap(cashitems, hero, hitStuff);
+		FlxG.overlap(hitContainer, hero, hitStuff);
+	}
+
+	private function updateShop() {
+		endMenu.update();
+	}
+
 }

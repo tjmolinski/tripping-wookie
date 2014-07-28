@@ -2958,7 +2958,9 @@
    <depend name="include/CloudManager.h"/>
    <depend name="include/EndMenu.h"/>
    <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/GameState.h"/>
    <depend name="include/Hero.h"/>
+   <depend name="include/Pizza.h"/>
    <depend name="include/PlayState.h"/>
    <depend name="include/PowerDown.h"/>
    <depend name="include/PowerUp.h"/>
@@ -2975,12 +2977,32 @@
    <depend name="include/flixel/effects/particles/FlxTypedEmitter.h"/>
    <depend name="include/flixel/group/FlxGroup.h"/>
    <depend name="include/flixel/group/FlxTypedGroup.h"/>
+   <depend name="include/flixel/input/touch/FlxTouch.h"/>
+   <depend name="include/flixel/input/touch/FlxTouchManager.h"/>
    <depend name="include/flixel/interfaces/IFlxBasic.h"/>
    <depend name="include/flixel/interfaces/IFlxDestroyable.h"/>
+   <depend name="include/flixel/interfaces/IFlxInput.h"/>
    <depend name="include/flixel/interfaces/IFlxParticle.h"/>
+   <depend name="include/flixel/interfaces/IFlxPooled.h"/>
    <depend name="include/flixel/interfaces/IFlxSprite.h"/>
    <depend name="include/flixel/text/FlxText.h"/>
    <depend name="include/flixel/text/FlxTextFormat.h"/>
+   <depend name="include/flixel/util/FlxPoint.h"/>
+   <depend name="include/flixel/util/FlxRandom.h"/>
+  </file>
+  <file name="src/GameState.cpp">
+   <depend name="include/GameState.h"/>
+  </file>
+  <file name="src/Pizza.cpp">
+   <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/Pizza.h"/>
+   <depend name="include/flixel/FlxBasic.h"/>
+   <depend name="include/flixel/FlxG.h"/>
+   <depend name="include/flixel/FlxObject.h"/>
+   <depend name="include/flixel/FlxSprite.h"/>
+   <depend name="include/flixel/interfaces/IFlxDestroyable.h"/>
+   <depend name="include/flixel/interfaces/IFlxPooled.h"/>
+   <depend name="include/flixel/util/FlxPoint.h"/>
    <depend name="include/flixel/util/FlxRandom.h"/>
   </file>
   <file name="src/MenuState.cpp">
@@ -3057,6 +3079,7 @@
    <depend name="include/ExtendedSprite.h"/>
    <depend name="include/Hero.h"/>
    <depend name="include/PlayState.h"/>
+   <depend name="include/PlayerState.h"/>
    <depend name="include/Reg.h"/>
    <depend name="include/Vector2.h"/>
    <depend name="include/flash/display/DisplayObject.h"/>
@@ -3083,6 +3106,9 @@
    <depend name="include/flixel/text/FlxText.h"/>
    <depend name="include/flixel/text/FlxTextFormat.h"/>
    <depend name="include/flixel/util/FlxPoint.h"/>
+  </file>
+  <file name="src/PlayerState.cpp">
+   <depend name="include/PlayerState.h"/>
   </file>
   <file name="src/EndMenu.cpp">
    <depend name="include/EndMenu.h"/>
@@ -3170,6 +3196,7 @@
   <file name="src/CloudManager.cpp">
    <depend name="include/Cloud.h"/>
    <depend name="include/CloudManager.h"/>
+   <depend name="include/CloudState.h"/>
    <depend name="include/ExtendedSprite.h"/>
    <depend name="include/PlayState.h"/>
    <depend name="include/flash/display/DisplayObject.h"/>
@@ -3188,6 +3215,9 @@
    <depend name="include/flixel/group/FlxGroup.h"/>
    <depend name="include/flixel/group/FlxTypedGroup.h"/>
    <depend name="include/flixel/interfaces/IFlxDestroyable.h"/>
+  </file>
+  <file name="src/CloudState.cpp">
+   <depend name="include/CloudState.h"/>
   </file>
   <file name="src/Cloud.cpp">
    <depend name="include/Cloud.h"/>

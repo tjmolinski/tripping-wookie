@@ -38,22 +38,30 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		path.set ("assets/data/data-goes-here.txt", "assets/data/data-goes-here.txt");
 		type.set ("assets/data/data-goes-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("assets/images/cheese.png", "assets/images/cheese.png");
+		type.set ("assets/images/cheese.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		path.set ("assets/images/cloud.png", "assets/images/cloud.png");
 		type.set ("assets/images/cloud.png", Reflect.field (AssetType, "image".toUpperCase ()));
-		path.set ("assets/images/images-go-here.txt", "assets/images/images-go-here.txt");
-		type.set ("assets/images/images-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("assets/images/pizza.png", "assets/images/pizza.png");
+		type.set ("assets/images/pizza.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		path.set ("assets/images/poopman.png", "assets/images/poopman.png");
 		type.set ("assets/images/poopman.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("assets/images/turkeyleg.png", "assets/images/turkeyleg.png");
+		type.set ("assets/images/turkeyleg.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		path.set ("assets/music/music-goes-here.txt", "assets/music/music-goes-here.txt");
 		type.set ("assets/music/music-goes-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
 		path.set ("assets/sounds/sounds-go-here.txt", "assets/sounds/sounds-go-here.txt");
 		type.set ("assets/sounds/sounds-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("images/cheese.png", "images/cheese.png");
+		type.set ("images/cheese.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		path.set ("images/cloud.png", "images/cloud.png");
 		type.set ("images/cloud.png", Reflect.field (AssetType, "image".toUpperCase ()));
-		path.set ("images/images-go-here.txt", "images/images-go-here.txt");
-		type.set ("images/images-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("images/pizza.png", "images/pizza.png");
+		type.set ("images/pizza.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		path.set ("images/poopman.png", "images/poopman.png");
 		type.set ("images/poopman.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		path.set ("images/turkeyleg.png", "images/turkeyleg.png");
+		type.set ("images/turkeyleg.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		path.set ("assets/sounds/beep.ogg", "assets/sounds/beep.ogg");
 		type.set ("assets/sounds/beep.ogg", Reflect.field (AssetType, "sound".toUpperCase ()));
 		path.set ("assets/sounds/flixel.ogg", "assets/sounds/flixel.ogg");
@@ -69,6 +77,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var loadManifest = false;
+		loadManifest = true;
+		loadManifest = true;
+		loadManifest = true;
+		loadManifest = true;
 		loadManifest = true;
 		loadManifest = true;
 		loadManifest = true;
@@ -676,7 +688,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
 #elseif html5
+
+
+
+
 
 
 

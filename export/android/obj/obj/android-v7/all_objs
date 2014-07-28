@@ -307,6 +307,8 @@ obj/android-v7/82b53a69_Reflect.obj
 obj/android-v7/82b53a69_PowerUp.obj
 obj/android-v7/82b53a69_PowerDown.obj
 obj/android-v7/82b53a69_PlayState.obj
+obj/android-v7/82b53a69_GameState.obj
+obj/android-v7/82b53a69_Pizza.obj
 obj/android-v7/82b53a69_MenuState.obj
 obj/android-v7/d2937073_FlxState.obj
 obj/android-v7/3a9a4348_FlxGroup.obj
@@ -315,12 +317,14 @@ obj/android-v7/82b53a69_IMap.obj
 obj/android-v7/82b53a69_List.obj
 obj/android-v7/82b53a69_Lambda.obj
 obj/android-v7/82b53a69_Hero.obj
+obj/android-v7/82b53a69_PlayerState.obj
 obj/android-v7/82b53a69_EndMenu.obj
 obj/android-v7/82b53a69_EReg.obj
 obj/android-v7/82b53a69_DefaultAssetLibrary.obj
 obj/android-v7/d39c13f8_AssetLibrary.obj
 obj/android-v7/82b53a69_Date.obj
 obj/android-v7/82b53a69_CloudManager.obj
+obj/android-v7/82b53a69_CloudState.obj
 obj/android-v7/82b53a69_Cloud.obj
 obj/android-v7/82b53a69_CashItem.obj
 obj/android-v7/82b53a69_ExtendedSprite.obj

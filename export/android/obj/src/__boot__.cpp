@@ -309,6 +309,8 @@
 #include <PowerUp.h>
 #include <PowerDown.h>
 #include <PlayState.h>
+#include <GameState.h>
+#include <Pizza.h>
 #include <MenuState.h>
 #include <flixel/FlxState.h>
 #include <flixel/group/FlxGroup.h>
@@ -317,12 +319,14 @@
 #include <List.h>
 #include <Lambda.h>
 #include <Hero.h>
+#include <PlayerState.h>
 #include <EndMenu.h>
 #include <EReg.h>
 #include <DefaultAssetLibrary.h>
 #include <openfl/AssetLibrary.h>
 #include <Date.h>
 #include <CloudManager.h>
+#include <CloudState.h>
 #include <Cloud.h>
 #include <CashItem.h>
 #include <ExtendedSprite.h>
@@ -669,6 +673,8 @@ hx::RegisterResources( hx::GetResources() );
 ::PowerUp_obj::__register();
 ::PowerDown_obj::__register();
 ::PlayState_obj::__register();
+::GameState_obj::__register();
+::Pizza_obj::__register();
 ::MenuState_obj::__register();
 ::flixel::FlxState_obj::__register();
 ::flixel::group::FlxGroup_obj::__register();
@@ -677,12 +683,14 @@ hx::RegisterResources( hx::GetResources() );
 ::List_obj::__register();
 ::Lambda_obj::__register();
 ::Hero_obj::__register();
+::PlayerState_obj::__register();
 ::EndMenu_obj::__register();
 ::EReg_obj::__register();
 ::DefaultAssetLibrary_obj::__register();
 ::openfl::AssetLibrary_obj::__register();
 ::Date_obj::__register();
 ::CloudManager_obj::__register();
+::CloudState_obj::__register();
 ::Cloud_obj::__register();
 ::CashItem_obj::__register();
 ::ExtendedSprite_obj::__register();
@@ -752,11 +760,13 @@ hx::RegisterResources( hx::GetResources() );
 ::ExtendedSprite_obj::__boot();
 ::CashItem_obj::__boot();
 ::Cloud_obj::__boot();
+::CloudState_obj::__boot();
 ::CloudManager_obj::__boot();
 ::Date_obj::__boot();
 ::openfl::AssetLibrary_obj::__boot();
 ::DefaultAssetLibrary_obj::__boot();
 ::EndMenu_obj::__boot();
+::PlayerState_obj::__boot();
 ::Hero_obj::__boot();
 ::Lambda_obj::__boot();
 ::List_obj::__boot();
@@ -765,6 +775,8 @@ hx::RegisterResources( hx::GetResources() );
 ::flixel::group::FlxGroup_obj::__boot();
 ::flixel::FlxState_obj::__boot();
 ::MenuState_obj::__boot();
+::Pizza_obj::__boot();
+::GameState_obj::__boot();
 ::PlayState_obj::__boot();
 ::PowerDown_obj::__boot();
 ::PowerUp_obj::__boot();

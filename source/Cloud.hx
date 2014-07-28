@@ -37,4 +37,8 @@ class Cloud extends ExtendedSprite {
 			destroy();
 		}
 	}
+
+	public function stop():Void {
+		velocity.y = 0;
+	}
 }

@@ -6,11 +6,17 @@ import flixel.FlxG;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
 
+enum PlayerState {
+	IDLE;
+	EATING;
+	SHITTING;
+	FINISHED;
+}
+
 class Hero extends ExtendedSprite {
 
 	public var shitSpeed : Int = 0;
 
-	var shitting : Bool = false;
 	var vel : Vector2 = new Vector2(0, 0);
 	var TILT_SPEED : Float = 50;
 	var FRICTION : Float = 0.8;
@@ -33,7 +39,8 @@ class Hero extends ExtendedSprite {
 	var cash : Int;
 
 	var timer : FlxText;
-	var startedEating : Bool = false;
+
+	var currentState : PlayerState;
 
 	public function new(newX : Int, newY : Int) {
 		super(newX, newY);
@@ -53,73 +60,108 @@ class Hero extends ExtendedSprite {
 		stomachSize = Reg.stomachSize;
 		food = Reg.food;
 		cash = Reg.cash;
+
+		currentState = PlayerState.IDLE;
 	}	
 
 	override public function update():Void {
-		if(shitting) {
-			//We need the inverse of the sensor
-			var sphincterControl = (sphincterStrength/(TILT_SPEED/10)) * TILT_SPEED;
-			vel.x -= (FlxG.accelerometer.x * sphincterControl);
-
-			//TODO: Put in variable
-			//44 for width of image
-			if(x > FlxG.width-44) {
-				x = FlxG.width-44;
-				vel.x = 0;
-			} else if(x < 0) {
-				x = 0;
-				vel.x = 0;
-			} else {
-				x += vel.x * FlxG.elapsed;
-			}
-
-			vel.x *= FRICTION;
-
-			//This makes it look like the character is leaning into turns
-			angle = vel.x * 0.07;
-
-			if(shitDecayBuffer > shitDecayTimer) {
-				shitDecayBuffer = 0;
-				shitSpeed -= SHIT_SPEED_DECAY;
-			} else {
-				shitDecayBuffer += (FlxG.elapsed/metabolism);
-			}
-
-			if(floating) {
-				//TODO: Ease out so not sudden stop when reaching middle
-				y -= FLOAT_SPEED * FlxG.elapsed;
-				if(y <= (FlxG.height/2)) {
-					floating = false;
-				}
-			}
-		} else {
-			if(shitEatBuffer > shitEatTimer) {
-				color = FlxColor.WHITE;
-				floating = true;
-				shitting = true;
-				timer.destroy();
-			} else {
-				color = FlxColor.BLUE;
-				if(shitSpeed < stomachSize*STOMACH_INTERVAL) {
-					for(touch in FlxG.touches.list) {
-						if(touch.justPressed) {
-							shitSpeed += food;
-							color = FlxColor.RED;
-							startedEating = true;
-						}
-					}
-					if(shitSpeed > stomachSize*STOMACH_INTERVAL) {
-						shitSpeed = stomachSize*STOMACH_INTERVAL;
-					}
-				}
-
-				if(startedEating) {
-					shitEatBuffer += FlxG.elapsed;
-					timer.text = (shitEatTimer - shitEatBuffer)+" sec";
-				}
-			}
+		switch(currentState) {
+		case PlayerState.IDLE:
+			updateIdle();
+		case PlayerState.EATING:
+			updateEating();
+		case PlayerState.SHITTING:
+			updateShitting();
+		case PlayerState.FINISHED:
+			updateFinished();
 		}
 		super.update();
+	}
+
+	private function updateIdle():Void {
+		for(touch in FlxG.touches.list) {
+			if(touch.justPressed) {
+				shitSpeed += food;
+				color = FlxColor.RED;
+				currentState = PlayerState.EATING;
+			}
+		}
+	}
+
+	private function updateEating():Void {
+		if(shitEatBuffer >= shitEatTimer) {
+			color = FlxColor.WHITE;
+			floating = true;
+			timer.destroy();
+			currentState = PlayerState.SHITTING;
+		} else {
+			color = FlxColor.BLUE;
+			if(shitSpeed < stomachSize*STOMACH_INTERVAL) {
+				for(touch in FlxG.touches.list) {
+					if(touch.justPressed) {
+						shitSpeed += food;
+						color = FlxColor.RED;
+					}
+				}
+				if(shitSpeed > stomachSize*STOMACH_INTERVAL) {
+					shitSpeed = stomachSize*STOMACH_INTERVAL;
+					shitEatBuffer = shitEatTimer;
+				}
+			} else {
+				shitEatBuffer = shitEatTimer;
+			}
+
+			shitEatBuffer += FlxG.elapsed;
+			timer.text = (shitEatTimer - shitEatBuffer) + " sec";
+		}
+	}
+
+	private function updateShitting():Void {
+		if(shitSpeed < 0) {
+			currentState = PlayerState.FINISHED;
+		}
+
+		//We need the inverse of the sensor
+		var sphincterControl = (sphincterStrength/(TILT_SPEED/10)) * TILT_SPEED;
+		vel.x -= (FlxG.accelerometer.x * sphincterControl);
+
+		//TODO: Put in variable
+		//44 for width of image
+		if(x > FlxG.width-44) {
+			x = FlxG.width-44;
+			vel.x = 0;
+		} else if(x < 0) {
+			x = 0;
+			vel.x = 0;
+		} else {
+			x += vel.x * FlxG.elapsed;
+		}
+
+		vel.x *= FRICTION;
+
+		//This makes it look like the character is leaning into turns
+		angle = vel.x * 0.07;
+
+		if(shitDecayBuffer > shitDecayTimer) {
+			shitDecayBuffer = 0;
+			shitSpeed -= SHIT_SPEED_DECAY;
+		} else {
+			shitDecayBuffer += (FlxG.elapsed/metabolism);
+		}
+
+		if(floating) {
+			//TODO: Ease out so not sudden stop when reaching middle
+			y -= FLOAT_SPEED * FlxG.elapsed;
+			if(y <= (FlxG.height/2)) {
+				floating = false;
+			}
+		}
+	}
+
+	private function updateFinished():Void {
+		if(y < FlxG.height) {
+			y += FLOAT_SPEED * FlxG.elapsed;
+		}
 	}
 
 	public function ateSpoiledFood():Void {
@@ -137,6 +179,6 @@ class Hero extends ExtendedSprite {
 	}
 
 	public function gotCash():Void {
-		Reg.cash += 10;
+		Reg.cash += 100;
 	}
 }

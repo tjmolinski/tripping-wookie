@@ -8,6 +8,7 @@
 #include <ExtendedSprite.h>
 HX_DECLARE_CLASS0(ExtendedSprite)
 HX_DECLARE_CLASS0(Hero)
+HX_DECLARE_CLASS0(PlayerState)
 HX_DECLARE_CLASS0(Vector2)
 HX_DECLARE_CLASS1(flixel,FlxBasic)
 HX_DECLARE_CLASS1(flixel,FlxObject)
@@ -39,7 +40,6 @@ class HXCPP_CLASS_ATTRIBUTES  Hero_obj : public ::ExtendedSprite_obj{
 		::String __ToString() const { return HX_CSTRING("Hero"); }
 
 		int shitSpeed;
-		bool shitting;
 		::Vector2 vel;
 		Float TILT_SPEED;
 		Float FRICTION;
@@ -57,8 +57,20 @@ class HXCPP_CLASS_ATTRIBUTES  Hero_obj : public ::ExtendedSprite_obj{
 		int food;
 		int cash;
 		::flixel::text::FlxText timer;
-		bool startedEating;
+		::PlayerState currentState;
 		virtual Void update( );
+
+		virtual Void updateIdle( );
+		Dynamic updateIdle_dyn();
+
+		virtual Void updateEating( );
+		Dynamic updateEating_dyn();
+
+		virtual Void updateShitting( );
+		Dynamic updateShitting_dyn();
+
+		virtual Void updateFinished( );
+		Dynamic updateFinished_dyn();
 
 		virtual Void ateSpoiledFood( );
 		Dynamic ateSpoiledFood_dyn();

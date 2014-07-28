@@ -36,6 +36,9 @@ class HXCPP_CLASS_ATTRIBUTES  Cloud_obj : public ::ExtendedSprite_obj{
 
 		virtual Void update( );
 
+		virtual Void stop( );
+		Dynamic stop_dyn();
+
 };
 
 

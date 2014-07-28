@@ -30,9 +30,13 @@ class HXCPP_CLASS_ATTRIBUTES  Reg_obj : public hx::Object{
 		::String __ToString() const { return HX_CSTRING("Reg"); }
 
 		static int metabolism;
+		static int metabolismPrice;
 		static int sphincterStrength;
+		static int sphincterStrengthPrice;
 		static int stomachSize;
+		static int stomachSizePrice;
 		static int food;
+		static int foodPrice;
 		static int cash;
 		static Dynamic levels;
 		static int level;

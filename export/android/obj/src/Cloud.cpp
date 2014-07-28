@@ -133,6 +133,19 @@ return null();
 }
 
 
+Void Cloud_obj::stop( ){
+{
+		HX_STACK_FRAME("Cloud","stop",0xe3ff21bb,"Cloud.stop","Cloud.hx",42,0x84fd7c89)
+		HX_STACK_THIS(this)
+		HX_STACK_LINE(42)
+		this->velocity->set_y((int)0);
+	}
+return null();
+}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Cloud_obj,stop,(void))
+
 
 Cloud_obj::Cloud_obj()
 {
@@ -141,6 +154,9 @@ Cloud_obj::Cloud_obj()
 Dynamic Cloud_obj::__Field(const ::String &inName,bool inCallProp)
 {
 	switch(inName.length) {
+	case 4:
+		if (HX_FIELD_EQ(inName,"stop") ) { return stop_dyn(); }
+		break;
 	case 6:
 		if (HX_FIELD_EQ(inName,"update") ) { return update_dyn(); }
 	}
@@ -166,6 +182,7 @@ static hx::StorageInfo *sMemberStorageInfo = 0;
 
 static ::String sMemberFields[] = {
 	HX_CSTRING("update"),
+	HX_CSTRING("stop"),
 	String(null()) };
 
 static void sMarkStatics(HX_MARK_PARAMS) {
