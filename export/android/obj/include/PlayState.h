@@ -72,6 +72,12 @@ class HXCPP_CLASS_ATTRIBUTES  PlayState_obj : public ::flixel::FlxState_obj{
 		virtual Void spawnCashItem( );
 		Dynamic spawnCashItem_dyn();
 
+		virtual Void spawnCheese( );
+		Dynamic spawnCheese_dyn();
+
+		virtual Void spawnTurkeyLeg( );
+		Dynamic spawnTurkeyLeg_dyn();
+
 		virtual Void spawnPizza( );
 		Dynamic spawnPizza_dyn();
 

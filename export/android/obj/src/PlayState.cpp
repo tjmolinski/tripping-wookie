@@ -3,6 +3,9 @@
 #ifndef INCLUDED_CashItem
 #include <CashItem.h>
 #endif
+#ifndef INCLUDED_Cheese
+#include <Cheese.h>
+#endif
 #ifndef INCLUDED_CloudManager
 #include <CloudManager.h>
 #endif
@@ -11,6 +14,9 @@
 #endif
 #ifndef INCLUDED_ExtendedSprite
 #include <ExtendedSprite.h>
+#endif
+#ifndef INCLUDED_Food
+#include <Food.h>
 #endif
 #ifndef INCLUDED_GameState
 #include <GameState.h>
@@ -35,6 +41,9 @@
 #endif
 #ifndef INCLUDED_Std
 #include <Std.h>
+#endif
+#ifndef INCLUDED_TurkeyLeg
+#include <TurkeyLeg.h>
 #endif
 #ifndef INCLUDED_Type
 #include <Type.h>
@@ -158,40 +167,68 @@ Void PlayState_obj::hitStuff( ::flixel::FlxObject obj1,::flixel::FlxObject obj2)
 			::Class _g2 = ::Type_obj::getClass(obj1);		HX_STACK_VAR(_g2,"_g2");
 			HX_STACK_LINE(50)
 			::String _g3 = ::Type_obj::getClassName(_g2);		HX_STACK_VAR(_g3,"_g3");
-			HX_STACK_LINE(50)
-			if (((_g3 == HX_CSTRING("Pizza")))){
-				HX_STACK_LINE(51)
-				int _g4 = (int)0;		HX_STACK_VAR(_g4,"_g4");
-				HX_STACK_LINE(51)
-				Array< ::Dynamic > _g11 = ::flixel::FlxG_obj::touches->list;		HX_STACK_VAR(_g11,"_g11");
-				HX_STACK_LINE(51)
-				while((true)){
-					HX_STACK_LINE(51)
-					if ((!(((_g4 < _g11->length))))){
+			struct _Function_2_1{
+				inline static bool Block( ::flixel::FlxObject &obj1){
+					HX_STACK_FRAME("*","closure",0x5bdab937,"*.closure","PlayState.hx",51,0xb30d7781)
+					{
 						HX_STACK_LINE(51)
+						::Class _g4 = ::Type_obj::getClass(obj1);		HX_STACK_VAR(_g4,"_g4");
+						HX_STACK_LINE(51)
+						::String _g5 = ::Type_obj::getClassName(_g4);		HX_STACK_VAR(_g5,"_g5");
+						HX_STACK_LINE(51)
+						return (_g5 == HX_CSTRING("Cheese"));
+					}
+					return null();
+				}
+			};
+			struct _Function_2_2{
+				inline static bool Block( ::flixel::FlxObject &obj1){
+					HX_STACK_FRAME("*","closure",0x5bdab937,"*.closure","PlayState.hx",52,0xb30d7781)
+					{
+						HX_STACK_LINE(52)
+						::Class _g6 = ::Type_obj::getClass(obj1);		HX_STACK_VAR(_g6,"_g6");
+						HX_STACK_LINE(52)
+						::String _g7 = ::Type_obj::getClassName(_g6);		HX_STACK_VAR(_g7,"_g7");
+						HX_STACK_LINE(52)
+						return (_g7 == HX_CSTRING("TurkeyLeg"));
+					}
+					return null();
+				}
+			};
+			HX_STACK_LINE(50)
+			if (((  ((!(((  ((!(((_g3 == HX_CSTRING("Pizza")))))) ? bool(_Function_2_1::Block(obj1)) : bool(true) ))))) ? bool(_Function_2_2::Block(obj1)) : bool(true) ))){
+				HX_STACK_LINE(53)
+				int _g4 = (int)0;		HX_STACK_VAR(_g4,"_g4");
+				HX_STACK_LINE(53)
+				Array< ::Dynamic > _g11 = ::flixel::FlxG_obj::touches->list;		HX_STACK_VAR(_g11,"_g11");
+				HX_STACK_LINE(53)
+				while((true)){
+					HX_STACK_LINE(53)
+					if ((!(((_g4 < _g11->length))))){
+						HX_STACK_LINE(53)
 						break;
 					}
-					HX_STACK_LINE(51)
+					HX_STACK_LINE(53)
 					::flixel::input::touch::FlxTouch touch = _g11->__get(_g4).StaticCast< ::flixel::input::touch::FlxTouch >();		HX_STACK_VAR(touch,"touch");
-					HX_STACK_LINE(51)
+					HX_STACK_LINE(53)
 					++(_g4);
-					HX_STACK_LINE(52)
+					HX_STACK_LINE(54)
 					if (((touch->_current == (int)2))){
-						HX_STACK_LINE(53)
-						this->hero->ateFood();
-						HX_STACK_LINE(54)
-						this->hitContainer->remove(obj1,null());
 						HX_STACK_LINE(55)
+						this->hero->ateFood();
+						HX_STACK_LINE(56)
+						this->hitContainer->remove(obj1,null());
+						HX_STACK_LINE(57)
 						obj1->kill();
 					}
 				}
 			}
 			else{
-				HX_STACK_LINE(59)
-				this->hero->gotCash();
-				HX_STACK_LINE(60)
-				this->cash->set_text((HX_CSTRING("Cash: $") + ::Reg_obj::cash));
 				HX_STACK_LINE(61)
+				this->hero->gotCash();
+				HX_STACK_LINE(62)
+				this->cash->set_text((HX_CSTRING("Cash: $") + ::Reg_obj::cash));
+				HX_STACK_LINE(63)
 				obj1->kill();
 			}
 		}
@@ -204,13 +241,13 @@ HX_DEFINE_DYNAMIC_FUNC2(PlayState_obj,hitStuff,(void))
 
 Void PlayState_obj::spawnCashItem( ){
 {
-		HX_STACK_FRAME("PlayState","spawnCashItem",0x6e8d39f0,"PlayState.spawnCashItem","PlayState.hx",65,0xb30d7781)
+		HX_STACK_FRAME("PlayState","spawnCashItem",0x6e8d39f0,"PlayState.spawnCashItem","PlayState.hx",67,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(66)
+		HX_STACK_LINE(68)
 		::CashItem pickup;		HX_STACK_VAR(pickup,"pickup");
-		HX_STACK_LINE(66)
+		HX_STACK_LINE(68)
 		pickup = hx::TCast< CashItem >::cast(this->cashitems->recycle(null(),null(),null(),null()));
-		HX_STACK_LINE(67)
+		HX_STACK_LINE(69)
 		pickup->spawn();
 	}
 return null();
@@ -219,13 +256,43 @@ return null();
 
 HX_DEFINE_DYNAMIC_FUNC0(PlayState_obj,spawnCashItem,(void))
 
+Void PlayState_obj::spawnCheese( ){
+{
+		HX_STACK_FRAME("PlayState","spawnCheese",0x5e96e021,"PlayState.spawnCheese","PlayState.hx",72,0xb30d7781)
+		HX_STACK_THIS(this)
+		HX_STACK_LINE(73)
+		::Cheese cheese = ::Cheese_obj::__new();		HX_STACK_VAR(cheese,"cheese");
+		HX_STACK_LINE(74)
+		this->hitContainer->add(cheese);
+	}
+return null();
+}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(PlayState_obj,spawnCheese,(void))
+
+Void PlayState_obj::spawnTurkeyLeg( ){
+{
+		HX_STACK_FRAME("PlayState","spawnTurkeyLeg",0xf2ee4a36,"PlayState.spawnTurkeyLeg","PlayState.hx",77,0xb30d7781)
+		HX_STACK_THIS(this)
+		HX_STACK_LINE(78)
+		::TurkeyLeg turkeyLeg = ::TurkeyLeg_obj::__new();		HX_STACK_VAR(turkeyLeg,"turkeyLeg");
+		HX_STACK_LINE(79)
+		this->hitContainer->add(turkeyLeg);
+	}
+return null();
+}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(PlayState_obj,spawnTurkeyLeg,(void))
+
 Void PlayState_obj::spawnPizza( ){
 {
-		HX_STACK_FRAME("PlayState","spawnPizza",0x88d62e7e,"PlayState.spawnPizza","PlayState.hx",70,0xb30d7781)
+		HX_STACK_FRAME("PlayState","spawnPizza",0x88d62e7e,"PlayState.spawnPizza","PlayState.hx",82,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(71)
+		HX_STACK_LINE(83)
 		::Pizza pizza = ::Pizza_obj::__new();		HX_STACK_VAR(pizza,"pizza");
-		HX_STACK_LINE(72)
+		HX_STACK_LINE(84)
 		this->hitContainer->add(pizza);
 	}
 return null();
@@ -236,13 +303,13 @@ HX_DEFINE_DYNAMIC_FUNC0(PlayState_obj,spawnPizza,(void))
 
 Void PlayState_obj::spawnPowerDown( ){
 {
-		HX_STACK_FRAME("PlayState","spawnPowerDown",0x1308fb3d,"PlayState.spawnPowerDown","PlayState.hx",75,0xb30d7781)
+		HX_STACK_FRAME("PlayState","spawnPowerDown",0x1308fb3d,"PlayState.spawnPowerDown","PlayState.hx",87,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(76)
+		HX_STACK_LINE(88)
 		::PowerDown pickup;		HX_STACK_VAR(pickup,"pickup");
-		HX_STACK_LINE(76)
+		HX_STACK_LINE(88)
 		pickup = hx::TCast< PowerDown >::cast(this->powerdowns->recycle(null(),null(),null(),null()));
-		HX_STACK_LINE(77)
+		HX_STACK_LINE(89)
 		pickup->spawn();
 	}
 return null();
@@ -253,13 +320,13 @@ HX_DEFINE_DYNAMIC_FUNC0(PlayState_obj,spawnPowerDown,(void))
 
 Void PlayState_obj::spawnPowerUp( ){
 {
-		HX_STACK_FRAME("PlayState","spawnPowerUp",0xabb96c76,"PlayState.spawnPowerUp","PlayState.hx",80,0xb30d7781)
+		HX_STACK_FRAME("PlayState","spawnPowerUp",0xabb96c76,"PlayState.spawnPowerUp","PlayState.hx",92,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(81)
+		HX_STACK_LINE(93)
 		::PowerUp pickup;		HX_STACK_VAR(pickup,"pickup");
-		HX_STACK_LINE(81)
+		HX_STACK_LINE(93)
 		pickup = hx::TCast< PowerUp >::cast(this->powerups->recycle(null(),null(),null(),null()));
-		HX_STACK_LINE(82)
+		HX_STACK_LINE(94)
 		pickup->spawn();
 	}
 return null();
@@ -269,30 +336,30 @@ return null();
 HX_DEFINE_DYNAMIC_FUNC0(PlayState_obj,spawnPowerUp,(void))
 
 int PlayState_obj::sortByZ( int order,::ExtendedSprite sprite1,::ExtendedSprite sprite2){
-	HX_STACK_FRAME("PlayState","sortByZ",0x4a8fefd4,"PlayState.sortByZ","PlayState.hx",86,0xb30d7781)
+	HX_STACK_FRAME("PlayState","sortByZ",0x4a8fefd4,"PlayState.sortByZ","PlayState.hx",98,0xb30d7781)
 	HX_STACK_THIS(this)
 	HX_STACK_ARG(order,"order")
 	HX_STACK_ARG(sprite1,"sprite1")
 	HX_STACK_ARG(sprite2,"sprite2")
-	HX_STACK_LINE(86)
+	HX_STACK_LINE(98)
 	Float Value1 = sprite1->z;		HX_STACK_VAR(Value1,"Value1");
-	HX_STACK_LINE(86)
+	HX_STACK_LINE(98)
 	Float Value2 = sprite2->z;		HX_STACK_VAR(Value2,"Value2");
-	HX_STACK_LINE(86)
+	HX_STACK_LINE(98)
 	int result = (int)0;		HX_STACK_VAR(result,"result");
-	HX_STACK_LINE(86)
+	HX_STACK_LINE(98)
 	if (((Value1 < Value2))){
-		HX_STACK_LINE(86)
+		HX_STACK_LINE(98)
 		result = order;
 	}
 	else{
-		HX_STACK_LINE(86)
+		HX_STACK_LINE(98)
 		if (((Value1 > Value2))){
-			HX_STACK_LINE(86)
+			HX_STACK_LINE(98)
 			result = -(order);
 		}
 	}
-	HX_STACK_LINE(86)
+	HX_STACK_LINE(98)
 	return result;
 }
 
@@ -301,41 +368,41 @@ HX_DEFINE_DYNAMIC_FUNC3(PlayState_obj,sortByZ,return )
 
 Void PlayState_obj::addToScene( ::ExtendedSprite object){
 {
-		HX_STACK_FRAME("PlayState","addToScene",0x38f8c721,"PlayState.addToScene","PlayState.hx",89,0xb30d7781)
+		HX_STACK_FRAME("PlayState","addToScene",0x38f8c721,"PlayState.addToScene","PlayState.hx",101,0xb30d7781)
 		HX_STACK_THIS(this)
 		HX_STACK_ARG(object,"object")
-		HX_STACK_LINE(90)
+		HX_STACK_LINE(102)
 		this->container->add(object);
-		HX_STACK_LINE(91)
+		HX_STACK_LINE(103)
 		{
-			HX_STACK_LINE(91)
+			HX_STACK_LINE(103)
 			int Order = (int)-1;		HX_STACK_VAR(Order,"Order");
-			HX_STACK_LINE(91)
+			HX_STACK_LINE(103)
 			Dynamic _g;		HX_STACK_VAR(_g,"_g");
-			HX_STACK_LINE(91)
+			HX_STACK_LINE(103)
 			{
-				HX_STACK_LINE(91)
+				HX_STACK_LINE(103)
 				Dynamic f = Dynamic( Array_obj<Dynamic>::__new().Add(this->sortByZ_dyn()));		HX_STACK_VAR(f,"f");
-				HX_STACK_LINE(91)
+				HX_STACK_LINE(103)
 				Array< int > a1 = Array_obj< int >::__new().Add(Order);		HX_STACK_VAR(a1,"a1");
 
 				HX_BEGIN_LOCAL_FUNC_S2(hx::LocalFunc,_Function_3_1,Array< int >,a1,Dynamic,f)
 				int run(::ExtendedSprite a2,::ExtendedSprite a3){
-					HX_STACK_FRAME("*","_Function_3_1",0x520271b9,"*._Function_3_1","PlayState.hx",91,0xb30d7781)
+					HX_STACK_FRAME("*","_Function_3_1",0x520271b9,"*._Function_3_1","PlayState.hx",103,0xb30d7781)
 					HX_STACK_ARG(a2,"a2")
 					HX_STACK_ARG(a3,"a3")
 					{
-						HX_STACK_LINE(91)
+						HX_STACK_LINE(103)
 						return f->__GetItem((int)0)(a1->__get((int)0),a2,a3).Cast< int >();
 					}
 					return null();
 				}
 				HX_END_LOCAL_FUNC2(return)
 
-				HX_STACK_LINE(91)
+				HX_STACK_LINE(103)
 				_g =  Dynamic(new _Function_3_1(a1,f));
 			}
-			HX_STACK_LINE(91)
+			HX_STACK_LINE(103)
 			this->container->members->__Field(HX_CSTRING("sort"),true)(_g);
 		}
 	}
@@ -347,269 +414,269 @@ HX_DEFINE_DYNAMIC_FUNC1(PlayState_obj,addToScene,(void))
 
 Void PlayState_obj::create( ){
 {
-		HX_STACK_FRAME("PlayState","create",0x82220fed,"PlayState.create","PlayState.hx",95,0xb30d7781)
+		HX_STACK_FRAME("PlayState","create",0x82220fed,"PlayState.create","PlayState.hx",107,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(96)
-		this->super::create();
-		HX_STACK_LINE(98)
-		this->currentState = ::GameState_obj::PLAYING;
-		HX_STACK_LINE(99)
-		::flixel::group::FlxTypedGroup _g = ::flixel::group::FlxTypedGroup_obj::__new(null());		HX_STACK_VAR(_g,"_g");
-		HX_STACK_LINE(99)
-		this->container = _g;
-		HX_STACK_LINE(100)
-		::flixel::group::FlxGroup _g1 = ::flixel::group::FlxGroup_obj::__new((int)100);		HX_STACK_VAR(_g1,"_g1");
-		HX_STACK_LINE(100)
-		this->hitContainer = _g1;
-		HX_STACK_LINE(102)
-		int _g2;		HX_STACK_VAR(_g2,"_g2");
-		HX_STACK_LINE(102)
-		_g2 = hx::TCast< Int >::cast((Float(::flixel::FlxG_obj::width) / Float((int)2)));
-		HX_STACK_LINE(102)
-		int _g3;		HX_STACK_VAR(_g3,"_g3");
-		HX_STACK_LINE(102)
-		_g3 = hx::TCast< Int >::cast((::flixel::FlxG_obj::height - (int)50));
-		HX_STACK_LINE(102)
-		::Hero _g4 = ::Hero_obj::__new(_g2,_g3);		HX_STACK_VAR(_g4,"_g4");
-		HX_STACK_LINE(102)
-		this->hero = _g4;
-		HX_STACK_LINE(103)
-		::flixel::text::FlxText _g5 = ::flixel::text::FlxText_obj::__new((int)0,(int)0,::flixel::FlxG_obj::width,HX_CSTRING("0 MPH"),null(),null());		HX_STACK_VAR(_g5,"_g5");
-		HX_STACK_LINE(103)
-		this->speed = _g5;
-		HX_STACK_LINE(104)
-		this->speed->setFormat(null(),(int)24,(int)-16777216,HX_CSTRING("left"),null(),null(),null());
-		HX_STACK_LINE(105)
-		{
-			HX_STACK_LINE(105)
-			::flixel::text::FlxText _this = this->speed;		HX_STACK_VAR(_this,"_this");
-			HX_STACK_LINE(105)
-			Float Quality = (int)1;		HX_STACK_VAR(Quality,"Quality");
-			HX_STACK_LINE(105)
-			_this->set_borderStyle((int)2);
-			HX_STACK_LINE(105)
-			_this->set_borderColor((int)-1);
-			HX_STACK_LINE(105)
-			_this->set_borderSize((int)2);
-			HX_STACK_LINE(105)
-			_this->set_borderQuality(Quality);
-		}
-		HX_STACK_LINE(106)
-		::flixel::text::FlxTextFormat _g6 = ::flixel::text::FlxTextFormat_obj::__new((int)0,false,false,(int)16777215,(int)0,(int)12);		HX_STACK_VAR(_g6,"_g6");
-		HX_STACK_LINE(106)
-		this->speed->addFormat(_g6,null(),null());
-		HX_STACK_LINE(107)
-		::flixel::text::FlxText _g7 = ::flixel::text::FlxText_obj::__new((int)0,(int)0,::flixel::FlxG_obj::width,(HX_CSTRING("Level: ") + ::Reg_obj::level),null(),null());		HX_STACK_VAR(_g7,"_g7");
-		HX_STACK_LINE(107)
-		this->level = _g7;
 		HX_STACK_LINE(108)
-		this->level->setFormat(null(),(int)24,(int)-16777216,HX_CSTRING("right"),null(),null(),null());
-		HX_STACK_LINE(109)
-		{
-			HX_STACK_LINE(109)
-			::flixel::text::FlxText _this = this->level;		HX_STACK_VAR(_this,"_this");
-			HX_STACK_LINE(109)
-			Float Quality = (int)1;		HX_STACK_VAR(Quality,"Quality");
-			HX_STACK_LINE(109)
-			_this->set_borderStyle((int)2);
-			HX_STACK_LINE(109)
-			_this->set_borderColor((int)-1);
-			HX_STACK_LINE(109)
-			_this->set_borderSize((int)2);
-			HX_STACK_LINE(109)
-			_this->set_borderQuality(Quality);
-		}
+		this->super::create();
 		HX_STACK_LINE(110)
-		::flixel::text::FlxTextFormat _g8 = ::flixel::text::FlxTextFormat_obj::__new((int)0,false,false,(int)16777215,(int)0,(int)12);		HX_STACK_VAR(_g8,"_g8");
-		HX_STACK_LINE(110)
-		this->level->addFormat(_g8,null(),null());
+		this->currentState = ::GameState_obj::PLAYING;
+		HX_STACK_LINE(111)
+		::flixel::group::FlxTypedGroup _g = ::flixel::group::FlxTypedGroup_obj::__new(null());		HX_STACK_VAR(_g,"_g");
+		HX_STACK_LINE(111)
+		this->container = _g;
 		HX_STACK_LINE(112)
-		::flixel::text::FlxText _g9 = ::flixel::text::FlxText_obj::__new((int)0,(int)0,::flixel::FlxG_obj::width,(HX_CSTRING("Cash: $") + ::Reg_obj::cash),null(),null());		HX_STACK_VAR(_g9,"_g9");
+		::flixel::group::FlxGroup _g1 = ::flixel::group::FlxGroup_obj::__new((int)100);		HX_STACK_VAR(_g1,"_g1");
 		HX_STACK_LINE(112)
-		this->cash = _g9;
-		HX_STACK_LINE(113)
-		this->cash->setFormat(null(),(int)24,(int)-16777216,HX_CSTRING("center"),null(),null(),null());
+		this->hitContainer = _g1;
 		HX_STACK_LINE(114)
+		int _g2;		HX_STACK_VAR(_g2,"_g2");
+		HX_STACK_LINE(114)
+		_g2 = hx::TCast< Int >::cast((Float(::flixel::FlxG_obj::width) / Float((int)2)));
+		HX_STACK_LINE(114)
+		int _g3;		HX_STACK_VAR(_g3,"_g3");
+		HX_STACK_LINE(114)
+		_g3 = hx::TCast< Int >::cast((::flixel::FlxG_obj::height - (int)50));
+		HX_STACK_LINE(114)
+		::Hero _g4 = ::Hero_obj::__new(_g2,_g3);		HX_STACK_VAR(_g4,"_g4");
+		HX_STACK_LINE(114)
+		this->hero = _g4;
+		HX_STACK_LINE(115)
+		::flixel::text::FlxText _g5 = ::flixel::text::FlxText_obj::__new((int)0,(int)0,::flixel::FlxG_obj::width,HX_CSTRING("0 MPH"),null(),null());		HX_STACK_VAR(_g5,"_g5");
+		HX_STACK_LINE(115)
+		this->speed = _g5;
+		HX_STACK_LINE(116)
+		this->speed->setFormat(null(),(int)24,(int)-16777216,HX_CSTRING("left"),null(),null(),null());
+		HX_STACK_LINE(117)
 		{
-			HX_STACK_LINE(114)
-			::flixel::text::FlxText _this = this->cash;		HX_STACK_VAR(_this,"_this");
-			HX_STACK_LINE(114)
+			HX_STACK_LINE(117)
+			::flixel::text::FlxText _this = this->speed;		HX_STACK_VAR(_this,"_this");
+			HX_STACK_LINE(117)
 			Float Quality = (int)1;		HX_STACK_VAR(Quality,"Quality");
-			HX_STACK_LINE(114)
+			HX_STACK_LINE(117)
 			_this->set_borderStyle((int)2);
-			HX_STACK_LINE(114)
+			HX_STACK_LINE(117)
 			_this->set_borderColor((int)-1);
-			HX_STACK_LINE(114)
+			HX_STACK_LINE(117)
 			_this->set_borderSize((int)2);
-			HX_STACK_LINE(114)
+			HX_STACK_LINE(117)
 			_this->set_borderQuality(Quality);
 		}
-		HX_STACK_LINE(115)
-		::flixel::text::FlxTextFormat _g10 = ::flixel::text::FlxTextFormat_obj::__new((int)0,false,false,(int)16777215,(int)0,(int)12);		HX_STACK_VAR(_g10,"_g10");
-		HX_STACK_LINE(115)
-		this->cash->addFormat(_g10,null(),null());
-		HX_STACK_LINE(117)
-		::flixel::effects::particles::FlxEmitter _g11 = ::flixel::effects::particles::FlxEmitter_obj::__new((this->hero->x + (int)22),(this->hero->y + (int)54),(int)200);		HX_STACK_VAR(_g11,"_g11");
-		HX_STACK_LINE(117)
-		this->emitter = _g11;
 		HX_STACK_LINE(118)
-		this->emitter->setXSpeed((int)-70,(int)70);
+		::flixel::text::FlxTextFormat _g6 = ::flixel::text::FlxTextFormat_obj::__new((int)0,false,false,(int)16777215,(int)0,(int)12);		HX_STACK_VAR(_g6,"_g6");
+		HX_STACK_LINE(118)
+		this->speed->addFormat(_g6,null(),null());
 		HX_STACK_LINE(119)
-		this->emitter->setYSpeed((int)300,(int)400);
+		::flixel::text::FlxText _g7 = ::flixel::text::FlxText_obj::__new((int)0,(int)0,::flixel::FlxG_obj::width,(HX_CSTRING("Level: ") + ::Reg_obj::level),null(),null());		HX_STACK_VAR(_g7,"_g7");
+		HX_STACK_LINE(119)
+		this->level = _g7;
 		HX_STACK_LINE(120)
+		this->level->setFormat(null(),(int)24,(int)-16777216,HX_CSTRING("right"),null(),null(),null());
+		HX_STACK_LINE(121)
 		{
-			HX_STACK_LINE(120)
+			HX_STACK_LINE(121)
+			::flixel::text::FlxText _this = this->level;		HX_STACK_VAR(_this,"_this");
+			HX_STACK_LINE(121)
+			Float Quality = (int)1;		HX_STACK_VAR(Quality,"Quality");
+			HX_STACK_LINE(121)
+			_this->set_borderStyle((int)2);
+			HX_STACK_LINE(121)
+			_this->set_borderColor((int)-1);
+			HX_STACK_LINE(121)
+			_this->set_borderSize((int)2);
+			HX_STACK_LINE(121)
+			_this->set_borderQuality(Quality);
+		}
+		HX_STACK_LINE(122)
+		::flixel::text::FlxTextFormat _g8 = ::flixel::text::FlxTextFormat_obj::__new((int)0,false,false,(int)16777215,(int)0,(int)12);		HX_STACK_VAR(_g8,"_g8");
+		HX_STACK_LINE(122)
+		this->level->addFormat(_g8,null(),null());
+		HX_STACK_LINE(124)
+		::flixel::text::FlxText _g9 = ::flixel::text::FlxText_obj::__new((int)0,(int)0,::flixel::FlxG_obj::width,(HX_CSTRING("Cash: $") + ::Reg_obj::cash),null(),null());		HX_STACK_VAR(_g9,"_g9");
+		HX_STACK_LINE(124)
+		this->cash = _g9;
+		HX_STACK_LINE(125)
+		this->cash->setFormat(null(),(int)24,(int)-16777216,HX_CSTRING("center"),null(),null(),null());
+		HX_STACK_LINE(126)
+		{
+			HX_STACK_LINE(126)
+			::flixel::text::FlxText _this = this->cash;		HX_STACK_VAR(_this,"_this");
+			HX_STACK_LINE(126)
+			Float Quality = (int)1;		HX_STACK_VAR(Quality,"Quality");
+			HX_STACK_LINE(126)
+			_this->set_borderStyle((int)2);
+			HX_STACK_LINE(126)
+			_this->set_borderColor((int)-1);
+			HX_STACK_LINE(126)
+			_this->set_borderSize((int)2);
+			HX_STACK_LINE(126)
+			_this->set_borderQuality(Quality);
+		}
+		HX_STACK_LINE(127)
+		::flixel::text::FlxTextFormat _g10 = ::flixel::text::FlxTextFormat_obj::__new((int)0,false,false,(int)16777215,(int)0,(int)12);		HX_STACK_VAR(_g10,"_g10");
+		HX_STACK_LINE(127)
+		this->cash->addFormat(_g10,null(),null());
+		HX_STACK_LINE(129)
+		::flixel::effects::particles::FlxEmitter _g11 = ::flixel::effects::particles::FlxEmitter_obj::__new((this->hero->x + (int)22),(this->hero->y + (int)54),(int)200);		HX_STACK_VAR(_g11,"_g11");
+		HX_STACK_LINE(129)
+		this->emitter = _g11;
+		HX_STACK_LINE(130)
+		this->emitter->setXSpeed((int)-70,(int)70);
+		HX_STACK_LINE(131)
+		this->emitter->setYSpeed((int)300,(int)400);
+		HX_STACK_LINE(132)
+		{
+			HX_STACK_LINE(132)
 			int _g12 = (int)0;		HX_STACK_VAR(_g12,"_g12");
-			HX_STACK_LINE(120)
+			HX_STACK_LINE(132)
 			int _g13 = ::Std_obj::_int((Float(this->emitter->maxSize) / Float((int)2)));		HX_STACK_VAR(_g13,"_g13");
-			HX_STACK_LINE(120)
+			HX_STACK_LINE(132)
 			while((true)){
-				HX_STACK_LINE(120)
+				HX_STACK_LINE(132)
 				if ((!(((_g12 < _g13))))){
-					HX_STACK_LINE(120)
+					HX_STACK_LINE(132)
 					break;
 				}
-				HX_STACK_LINE(120)
+				HX_STACK_LINE(132)
 				int i = (_g12)++;		HX_STACK_VAR(i,"i");
-				HX_STACK_LINE(121)
+				HX_STACK_LINE(133)
 				::flixel::effects::particles::FlxParticle _g121 = ::flixel::effects::particles::FlxParticle_obj::__new();		HX_STACK_VAR(_g121,"_g121");
-				HX_STACK_LINE(121)
+				HX_STACK_LINE(133)
 				this->brownPixel = _g121;
-				HX_STACK_LINE(122)
+				HX_STACK_LINE(134)
 				this->brownPixel->makeGraphic((int)5,(int)3,(int)-6927616,null(),null());
-				HX_STACK_LINE(123)
+				HX_STACK_LINE(135)
 				this->brownPixel->set_visible(false);
-				HX_STACK_LINE(124)
+				HX_STACK_LINE(136)
 				this->emitter->add(this->brownPixel);
-				HX_STACK_LINE(125)
+				HX_STACK_LINE(137)
 				::flixel::effects::particles::FlxParticle _g131 = ::flixel::effects::particles::FlxParticle_obj::__new();		HX_STACK_VAR(_g131,"_g131");
-				HX_STACK_LINE(125)
+				HX_STACK_LINE(137)
 				this->brownPixel = _g131;
-				HX_STACK_LINE(126)
+				HX_STACK_LINE(138)
 				this->brownPixel->makeGraphic((int)8,(int)5,(int)-6927616,null(),null());
-				HX_STACK_LINE(127)
+				HX_STACK_LINE(139)
 				this->brownPixel->set_visible(false);
-				HX_STACK_LINE(128)
+				HX_STACK_LINE(140)
 				this->emitter->add(this->brownPixel);
 			}
 		}
-		HX_STACK_LINE(130)
-		this->emitter->start(false,(int)3,.01,null(),null());
-		HX_STACK_LINE(132)
-		::CloudManager _g14 = ::CloudManager_obj::__new();		HX_STACK_VAR(_g14,"_g14");
-		HX_STACK_LINE(132)
-		this->cloudManager = _g14;
-		HX_STACK_LINE(135)
-		int numPickups = (int)2;		HX_STACK_VAR(numPickups,"numPickups");
-		HX_STACK_LINE(136)
-		::flixel::group::FlxGroup _g15 = ::flixel::group::FlxGroup_obj::__new(numPickups);		HX_STACK_VAR(_g15,"_g15");
-		HX_STACK_LINE(136)
-		this->powerups = _g15;
-		HX_STACK_LINE(137)
-		::flixel::group::FlxGroup _g16 = ::flixel::group::FlxGroup_obj::__new(numPickups);		HX_STACK_VAR(_g16,"_g16");
-		HX_STACK_LINE(137)
-		this->powerdowns = _g16;
-		HX_STACK_LINE(138)
-		::flixel::group::FlxGroup _g17 = ::flixel::group::FlxGroup_obj::__new(numPickups);		HX_STACK_VAR(_g17,"_g17");
-		HX_STACK_LINE(138)
-		this->cashitems = _g17;
-		HX_STACK_LINE(139)
-		::PowerUp powerup;		HX_STACK_VAR(powerup,"powerup");
-		HX_STACK_LINE(140)
-		::PowerDown powerdown;		HX_STACK_VAR(powerdown,"powerdown");
-		HX_STACK_LINE(141)
-		::CashItem cashitem;		HX_STACK_VAR(cashitem,"cashitem");
 		HX_STACK_LINE(142)
+		this->emitter->start(false,(int)3,.01,null(),null());
+		HX_STACK_LINE(144)
+		::CloudManager _g14 = ::CloudManager_obj::__new();		HX_STACK_VAR(_g14,"_g14");
+		HX_STACK_LINE(144)
+		this->cloudManager = _g14;
+		HX_STACK_LINE(147)
+		int numPickups = (int)2;		HX_STACK_VAR(numPickups,"numPickups");
+		HX_STACK_LINE(148)
+		::flixel::group::FlxGroup _g15 = ::flixel::group::FlxGroup_obj::__new(numPickups);		HX_STACK_VAR(_g15,"_g15");
+		HX_STACK_LINE(148)
+		this->powerups = _g15;
+		HX_STACK_LINE(149)
+		::flixel::group::FlxGroup _g16 = ::flixel::group::FlxGroup_obj::__new(numPickups);		HX_STACK_VAR(_g16,"_g16");
+		HX_STACK_LINE(149)
+		this->powerdowns = _g16;
+		HX_STACK_LINE(150)
+		::flixel::group::FlxGroup _g17 = ::flixel::group::FlxGroup_obj::__new(numPickups);		HX_STACK_VAR(_g17,"_g17");
+		HX_STACK_LINE(150)
+		this->cashitems = _g17;
+		HX_STACK_LINE(151)
+		::PowerUp powerup;		HX_STACK_VAR(powerup,"powerup");
+		HX_STACK_LINE(152)
+		::PowerDown powerdown;		HX_STACK_VAR(powerdown,"powerdown");
+		HX_STACK_LINE(153)
+		::CashItem cashitem;		HX_STACK_VAR(cashitem,"cashitem");
+		HX_STACK_LINE(154)
 		{
-			HX_STACK_LINE(142)
+			HX_STACK_LINE(154)
 			int _g12 = (int)0;		HX_STACK_VAR(_g12,"_g12");
-			HX_STACK_LINE(142)
+			HX_STACK_LINE(154)
 			while((true)){
-				HX_STACK_LINE(142)
+				HX_STACK_LINE(154)
 				if ((!(((_g12 < numPickups))))){
-					HX_STACK_LINE(142)
+					HX_STACK_LINE(154)
 					break;
 				}
-				HX_STACK_LINE(142)
+				HX_STACK_LINE(154)
 				int i = (_g12)++;		HX_STACK_VAR(i,"i");
-				HX_STACK_LINE(143)
+				HX_STACK_LINE(155)
 				::PowerUp _g18 = ::PowerUp_obj::__new((int)-100,(int)-100);		HX_STACK_VAR(_g18,"_g18");
-				HX_STACK_LINE(143)
+				HX_STACK_LINE(155)
 				powerup = _g18;
-				HX_STACK_LINE(144)
+				HX_STACK_LINE(156)
 				powerup->z = (int)100;
-				HX_STACK_LINE(145)
+				HX_STACK_LINE(157)
 				this->powerups->add(powerup);
-				HX_STACK_LINE(147)
+				HX_STACK_LINE(159)
 				::PowerDown _g19 = ::PowerDown_obj::__new((int)-100,(int)-100);		HX_STACK_VAR(_g19,"_g19");
-				HX_STACK_LINE(147)
+				HX_STACK_LINE(159)
 				powerdown = _g19;
-				HX_STACK_LINE(148)
+				HX_STACK_LINE(160)
 				powerdown->z = (int)100;
-				HX_STACK_LINE(149)
+				HX_STACK_LINE(161)
 				this->powerdowns->add(powerdown);
-				HX_STACK_LINE(151)
+				HX_STACK_LINE(163)
 				::CashItem _g20 = ::CashItem_obj::__new((int)-100,(int)-100);		HX_STACK_VAR(_g20,"_g20");
-				HX_STACK_LINE(151)
+				HX_STACK_LINE(163)
 				cashitem = _g20;
-				HX_STACK_LINE(152)
+				HX_STACK_LINE(164)
 				cashitem->z = (int)100;
-				HX_STACK_LINE(153)
+				HX_STACK_LINE(165)
 				this->cashitems->add(cashitem);
 			}
 		}
-		HX_STACK_LINE(156)
+		HX_STACK_LINE(168)
 		this->hero->z = (int)50;
-		HX_STACK_LINE(157)
+		HX_STACK_LINE(169)
 		this->add(this->powerups);
-		HX_STACK_LINE(158)
+		HX_STACK_LINE(170)
 		this->add(this->powerdowns);
-		HX_STACK_LINE(159)
+		HX_STACK_LINE(171)
 		this->add(this->cashitems);
-		HX_STACK_LINE(160)
+		HX_STACK_LINE(172)
 		this->add(this->emitter);
-		HX_STACK_LINE(161)
+		HX_STACK_LINE(173)
 		this->add(this->cash);
-		HX_STACK_LINE(162)
+		HX_STACK_LINE(174)
 		this->add(this->level);
-		HX_STACK_LINE(163)
+		HX_STACK_LINE(175)
 		this->add(this->speed);
-		HX_STACK_LINE(164)
+		HX_STACK_LINE(176)
 		this->container->add(this->hero);
-		HX_STACK_LINE(165)
+		HX_STACK_LINE(177)
 		this->add(this->container);
-		HX_STACK_LINE(166)
+		HX_STACK_LINE(178)
 		this->add(this->hitContainer);
-		HX_STACK_LINE(167)
+		HX_STACK_LINE(179)
 		{
-			HX_STACK_LINE(167)
+			HX_STACK_LINE(179)
 			int Order = (int)-1;		HX_STACK_VAR(Order,"Order");
-			HX_STACK_LINE(167)
+			HX_STACK_LINE(179)
 			Dynamic _g21;		HX_STACK_VAR(_g21,"_g21");
-			HX_STACK_LINE(167)
+			HX_STACK_LINE(179)
 			{
-				HX_STACK_LINE(167)
+				HX_STACK_LINE(179)
 				Dynamic f = Dynamic( Array_obj<Dynamic>::__new().Add(this->sortByZ_dyn()));		HX_STACK_VAR(f,"f");
-				HX_STACK_LINE(167)
+				HX_STACK_LINE(179)
 				Array< int > a1 = Array_obj< int >::__new().Add(Order);		HX_STACK_VAR(a1,"a1");
 
 				HX_BEGIN_LOCAL_FUNC_S2(hx::LocalFunc,_Function_3_1,Array< int >,a1,Dynamic,f)
 				int run(::ExtendedSprite a2,::ExtendedSprite a3){
-					HX_STACK_FRAME("*","_Function_3_1",0x520271b9,"*._Function_3_1","PlayState.hx",167,0xb30d7781)
+					HX_STACK_FRAME("*","_Function_3_1",0x520271b9,"*._Function_3_1","PlayState.hx",179,0xb30d7781)
 					HX_STACK_ARG(a2,"a2")
 					HX_STACK_ARG(a3,"a3")
 					{
-						HX_STACK_LINE(167)
+						HX_STACK_LINE(179)
 						return f->__GetItem((int)0)(a1->__get((int)0),a2,a3).Cast< int >();
 					}
 					return null();
 				}
 				HX_END_LOCAL_FUNC2(return)
 
-				HX_STACK_LINE(167)
+				HX_STACK_LINE(179)
 				_g21 =  Dynamic(new _Function_3_1(a1,f));
 			}
-			HX_STACK_LINE(167)
+			HX_STACK_LINE(179)
 			this->container->members->__Field(HX_CSTRING("sort"),true)(_g21);
 		}
 	}
@@ -619,29 +686,29 @@ return null();
 
 Void PlayState_obj::update( ){
 {
-		HX_STACK_FRAME("PlayState","update",0x8d182efa,"PlayState.update","PlayState.hx",170,0xb30d7781)
+		HX_STACK_FRAME("PlayState","update",0x8d182efa,"PlayState.update","PlayState.hx",182,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(171)
+		HX_STACK_LINE(183)
 		this->cash->set_text((HX_CSTRING("Cash: $") + ::Reg_obj::cash));
-		HX_STACK_LINE(172)
+		HX_STACK_LINE(184)
 		{
-			HX_STACK_LINE(172)
+			HX_STACK_LINE(184)
 			::GameState _g = this->currentState;		HX_STACK_VAR(_g,"_g");
-			HX_STACK_LINE(172)
+			HX_STACK_LINE(184)
 			switch( (int)(_g->__Index())){
 				case (int)0: {
-					HX_STACK_LINE(174)
+					HX_STACK_LINE(186)
 					this->updatePlaying();
 				}
 				;break;
 				case (int)1: {
-					HX_STACK_LINE(176)
+					HX_STACK_LINE(188)
 					this->updateShop();
 				}
 				;break;
 			}
 		}
-		HX_STACK_LINE(178)
+		HX_STACK_LINE(190)
 		this->super::update();
 	}
 return null();
@@ -650,77 +717,99 @@ return null();
 
 Void PlayState_obj::updatePlaying( ){
 {
-		HX_STACK_FRAME("PlayState","updatePlaying",0x09163b94,"PlayState.updatePlaying","PlayState.hx",181,0xb30d7781)
+		HX_STACK_FRAME("PlayState","updatePlaying",0x09163b94,"PlayState.updatePlaying","PlayState.hx",193,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(182)
+		HX_STACK_LINE(194)
 		if (((this->hero->shitSpeed < (int)0))){
-			HX_STACK_LINE(184)
+			HX_STACK_LINE(196)
 			hx::AddEq(::Reg_obj::cash,(int)50);
-			HX_STACK_LINE(185)
+			HX_STACK_LINE(197)
 			::EndMenu _g = ::EndMenu_obj::__new();		HX_STACK_VAR(_g,"_g");
-			HX_STACK_LINE(185)
+			HX_STACK_LINE(197)
 			this->endMenu = _g;
-			HX_STACK_LINE(186)
+			HX_STACK_LINE(198)
 			this->emitter->destroy();
-			HX_STACK_LINE(187)
+			HX_STACK_LINE(199)
 			hx::AddEq(::Reg_obj::level,(int)1);
-			HX_STACK_LINE(188)
+			HX_STACK_LINE(200)
 			this->level->set_text((HX_CSTRING("Level: ") + ::Reg_obj::level));
-			HX_STACK_LINE(189)
+			HX_STACK_LINE(201)
 			this->currentState = ::GameState_obj::SHOP;
-			HX_STACK_LINE(190)
+			HX_STACK_LINE(202)
 			this->cloudManager->stopClouds();
 		}
 		else{
-			HX_STACK_LINE(192)
+			HX_STACK_LINE(204)
 			this->speed->set_text((this->hero->shitSpeed + HX_CSTRING(" MPH")));
-			HX_STACK_LINE(194)
+			HX_STACK_LINE(206)
 			this->emitter->set_x((this->hero->x + (int)22));
-			HX_STACK_LINE(195)
+			HX_STACK_LINE(207)
 			this->emitter->set_y((this->hero->y + (int)54));
 		}
-		HX_STACK_LINE(198)
+		HX_STACK_LINE(210)
 		if (((this->pickupBuffer > this->pickupTimer))){
-			HX_STACK_LINE(199)
+			HX_STACK_LINE(211)
 			int _g1 = ::flixel::util::FlxRandom_obj::_internalSeed = (int(hx::Mod((::flixel::util::FlxRandom_obj::_internalSeed * (int)48271),(int)2147483647)) & int((int)2147483647));		HX_STACK_VAR(_g1,"_g1");
-			HX_STACK_LINE(199)
+			HX_STACK_LINE(211)
 			Float _g2 = (Float(_g1) / Float((int)2147483647));		HX_STACK_VAR(_g2,"_g2");
-			HX_STACK_LINE(199)
+			HX_STACK_LINE(211)
 			if (((_g2 < .25))){
-				HX_STACK_LINE(200)
+				HX_STACK_LINE(212)
 				this->spawnPowerDown();
 			}
 			else{
-				HX_STACK_LINE(201)
+				HX_STACK_LINE(213)
 				int _g3 = ::flixel::util::FlxRandom_obj::_internalSeed = (int(hx::Mod((::flixel::util::FlxRandom_obj::_internalSeed * (int)48271),(int)2147483647)) & int((int)2147483647));		HX_STACK_VAR(_g3,"_g3");
-				HX_STACK_LINE(201)
+				HX_STACK_LINE(213)
 				Float _g4 = (Float(_g3) / Float((int)2147483647));		HX_STACK_VAR(_g4,"_g4");
-				HX_STACK_LINE(201)
+				HX_STACK_LINE(213)
 				if (((_g4 < .75))){
-					HX_STACK_LINE(202)
-					this->spawnPizza();
+					HX_STACK_LINE(214)
+					int _g5 = ::flixel::util::FlxRandom_obj::_internalSeed = (int(hx::Mod((::flixel::util::FlxRandom_obj::_internalSeed * (int)48271),(int)2147483647)) & int((int)2147483647));		HX_STACK_VAR(_g5,"_g5");
+					HX_STACK_LINE(214)
+					Float _g6 = (Float(_g5) / Float((int)2147483647));		HX_STACK_VAR(_g6,"_g6");
+					HX_STACK_LINE(214)
+					if (((_g6 < .25))){
+						HX_STACK_LINE(215)
+						this->spawnCheese();
+					}
+					else{
+						HX_STACK_LINE(216)
+						int _g7 = ::flixel::util::FlxRandom_obj::_internalSeed = (int(hx::Mod((::flixel::util::FlxRandom_obj::_internalSeed * (int)48271),(int)2147483647)) & int((int)2147483647));		HX_STACK_VAR(_g7,"_g7");
+						HX_STACK_LINE(216)
+						Float _g8 = (Float(_g7) / Float((int)2147483647));		HX_STACK_VAR(_g8,"_g8");
+						HX_STACK_LINE(216)
+						if (((_g8 < 0.75))){
+							HX_STACK_LINE(217)
+							this->spawnTurkeyLeg();
+						}
+						else{
+							HX_STACK_LINE(219)
+							this->spawnPizza();
+						}
+					}
 				}
 				else{
-					HX_STACK_LINE(205)
+					HX_STACK_LINE(223)
 					this->spawnCashItem();
 				}
 			}
-			HX_STACK_LINE(207)
+			HX_STACK_LINE(225)
 			this->pickupBuffer = (int)0;
 		}
 		else{
-			HX_STACK_LINE(209)
+			HX_STACK_LINE(227)
 			hx::AddEq(this->pickupBuffer,::flixel::FlxG_obj::elapsed);
 		}
-		HX_STACK_LINE(212)
+		HX_STACK_LINE(230)
 		this->cloudManager->update();
-		HX_STACK_LINE(214)
+		HX_STACK_LINE(232)
 		::flixel::FlxG_obj::overlap(this->powerups,this->hero,this->hitStuff_dyn(),null());
-		HX_STACK_LINE(215)
+		HX_STACK_LINE(233)
 		::flixel::FlxG_obj::overlap(this->powerdowns,this->hero,this->hitStuff_dyn(),null());
-		HX_STACK_LINE(216)
+		HX_STACK_LINE(234)
 		::flixel::FlxG_obj::overlap(this->cashitems,this->hero,this->hitStuff_dyn(),null());
-		HX_STACK_LINE(217)
+		HX_STACK_LINE(235)
 		::flixel::FlxG_obj::overlap(this->hitContainer,this->hero,this->hitStuff_dyn(),null());
 	}
 return null();
@@ -731,9 +820,9 @@ HX_DEFINE_DYNAMIC_FUNC0(PlayState_obj,updatePlaying,(void))
 
 Void PlayState_obj::updateShop( ){
 {
-		HX_STACK_FRAME("PlayState","updateShop",0x91203510,"PlayState.updateShop","PlayState.hx",221,0xb30d7781)
+		HX_STACK_FRAME("PlayState","updateShop",0x91203510,"PlayState.updateShop","PlayState.hx",239,0xb30d7781)
 		HX_STACK_THIS(this)
-		HX_STACK_LINE(221)
+		HX_STACK_LINE(239)
 		this->endMenu->update();
 	}
 return null();
@@ -828,6 +917,7 @@ Dynamic PlayState_obj::__Field(const ::String &inName,bool inCallProp)
 		break;
 	case 11:
 		if (HX_FIELD_EQ(inName,"pickupTimer") ) { return pickupTimer; }
+		if (HX_FIELD_EQ(inName,"spawnCheese") ) { return spawnCheese_dyn(); }
 		break;
 	case 12:
 		if (HX_FIELD_EQ(inName,"pickupBuffer") ) { return pickupBuffer; }
@@ -841,6 +931,7 @@ Dynamic PlayState_obj::__Field(const ::String &inName,bool inCallProp)
 		if (HX_FIELD_EQ(inName,"updatePlaying") ) { return updatePlaying_dyn(); }
 		break;
 	case 14:
+		if (HX_FIELD_EQ(inName,"spawnTurkeyLeg") ) { return spawnTurkeyLeg_dyn(); }
 		if (HX_FIELD_EQ(inName,"spawnPowerDown") ) { return spawnPowerDown_dyn(); }
 	}
 	return super::__Field(inName,inCallProp);
@@ -949,6 +1040,8 @@ static ::String sMemberFields[] = {
 	HX_CSTRING("hitContainer"),
 	HX_CSTRING("hitStuff"),
 	HX_CSTRING("spawnCashItem"),
+	HX_CSTRING("spawnCheese"),
+	HX_CSTRING("spawnTurkeyLeg"),
 	HX_CSTRING("spawnPizza"),
 	HX_CSTRING("spawnPowerDown"),
 	HX_CSTRING("spawnPowerUp"),

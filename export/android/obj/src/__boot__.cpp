@@ -302,6 +302,7 @@
 #include <Vector2.h>
 #include <Type.h>
 #include <ValueType.h>
+#include <TurkeyLeg.h>
 #include <StringTools.h>
 #include <StringBuf.h>
 #include <Reg.h>
@@ -328,6 +329,8 @@
 #include <CloudManager.h>
 #include <CloudState.h>
 #include <Cloud.h>
+#include <Cheese.h>
+#include <Food.h>
 #include <CashItem.h>
 #include <ExtendedSprite.h>
 #include <flixel/FlxSprite.h>
@@ -666,6 +669,7 @@ hx::RegisterResources( hx::GetResources() );
 ::Vector2_obj::__register();
 ::Type_obj::__register();
 ::ValueType_obj::__register();
+::TurkeyLeg_obj::__register();
 ::StringTools_obj::__register();
 ::StringBuf_obj::__register();
 ::Reg_obj::__register();
@@ -692,6 +696,8 @@ hx::RegisterResources( hx::GetResources() );
 ::CloudManager_obj::__register();
 ::CloudState_obj::__register();
 ::Cloud_obj::__register();
+::Cheese_obj::__register();
+::Food_obj::__register();
 ::CashItem_obj::__register();
 ::ExtendedSprite_obj::__register();
 ::flixel::FlxSprite_obj::__register();
@@ -759,6 +765,8 @@ hx::RegisterResources( hx::GetResources() );
 ::flixel::FlxSprite_obj::__boot();
 ::ExtendedSprite_obj::__boot();
 ::CashItem_obj::__boot();
+::Food_obj::__boot();
+::Cheese_obj::__boot();
 ::Cloud_obj::__boot();
 ::CloudState_obj::__boot();
 ::CloudManager_obj::__boot();
@@ -784,6 +792,7 @@ hx::RegisterResources( hx::GetResources() );
 ::Reg_obj::__boot();
 ::StringBuf_obj::__boot();
 ::StringTools_obj::__boot();
+::TurkeyLeg_obj::__boot();
 ::ValueType_obj::__boot();
 ::Type_obj::__boot();
 ::Vector2_obj::__boot();

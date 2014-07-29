@@ -300,6 +300,7 @@ obj/android-v7/82b53a69_XmlType.obj
 obj/android-v7/82b53a69_Vector2.obj
 obj/android-v7/82b53a69_Type.obj
 obj/android-v7/82b53a69_ValueType.obj
+obj/android-v7/82b53a69_TurkeyLeg.obj
 obj/android-v7/82b53a69_StringTools.obj
 obj/android-v7/82b53a69_StringBuf.obj
 obj/android-v7/82b53a69_Reg.obj
@@ -326,6 +327,8 @@ obj/android-v7/82b53a69_Date.obj
 obj/android-v7/82b53a69_CloudManager.obj
 obj/android-v7/82b53a69_CloudState.obj
 obj/android-v7/82b53a69_Cloud.obj
+obj/android-v7/82b53a69_Cheese.obj
+obj/android-v7/82b53a69_Food.obj
 obj/android-v7/82b53a69_CashItem.obj
 obj/android-v7/82b53a69_ExtendedSprite.obj
 obj/android-v7/d2937073_FlxSprite.obj

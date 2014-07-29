@@ -2915,6 +2915,17 @@
   <file name="src/ValueType.cpp">
    <depend name="include/ValueType.h"/>
   </file>
+  <file name="src/TurkeyLeg.cpp">
+   <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/Food.h"/>
+   <depend name="include/TurkeyLeg.h"/>
+   <depend name="include/flixel/FlxBasic.h"/>
+   <depend name="include/flixel/FlxObject.h"/>
+   <depend name="include/flixel/FlxSprite.h"/>
+   <depend name="include/flixel/interfaces/IFlxDestroyable.h"/>
+   <depend name="include/flixel/interfaces/IFlxPooled.h"/>
+   <depend name="include/flixel/util/FlxPoint.h"/>
+  </file>
   <file name="src/StringTools.cpp">
    <depend name="include/StringTools.h"/>
   </file>
@@ -2955,9 +2966,11 @@
   </file>
   <file name="src/PlayState.cpp">
    <depend name="include/CashItem.h"/>
+   <depend name="include/Cheese.h"/>
    <depend name="include/CloudManager.h"/>
    <depend name="include/EndMenu.h"/>
    <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/Food.h"/>
    <depend name="include/GameState.h"/>
    <depend name="include/Hero.h"/>
    <depend name="include/Pizza.h"/>
@@ -2966,6 +2979,7 @@
    <depend name="include/PowerUp.h"/>
    <depend name="include/Reg.h"/>
    <depend name="include/Std.h"/>
+   <depend name="include/TurkeyLeg.h"/>
    <depend name="include/Type.h"/>
    <depend name="include/flixel/FlxBasic.h"/>
    <depend name="include/flixel/FlxG.h"/>
@@ -2995,15 +3009,14 @@
   </file>
   <file name="src/Pizza.cpp">
    <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/Food.h"/>
    <depend name="include/Pizza.h"/>
    <depend name="include/flixel/FlxBasic.h"/>
-   <depend name="include/flixel/FlxG.h"/>
    <depend name="include/flixel/FlxObject.h"/>
    <depend name="include/flixel/FlxSprite.h"/>
    <depend name="include/flixel/interfaces/IFlxDestroyable.h"/>
    <depend name="include/flixel/interfaces/IFlxPooled.h"/>
    <depend name="include/flixel/util/FlxPoint.h"/>
-   <depend name="include/flixel/util/FlxRandom.h"/>
   </file>
   <file name="src/MenuState.cpp">
    <depend name="include/MenuState.h"/>
@@ -3222,6 +3235,29 @@
   <file name="src/Cloud.cpp">
    <depend name="include/Cloud.h"/>
    <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/flixel/FlxBasic.h"/>
+   <depend name="include/flixel/FlxG.h"/>
+   <depend name="include/flixel/FlxObject.h"/>
+   <depend name="include/flixel/FlxSprite.h"/>
+   <depend name="include/flixel/interfaces/IFlxDestroyable.h"/>
+   <depend name="include/flixel/interfaces/IFlxPooled.h"/>
+   <depend name="include/flixel/util/FlxPoint.h"/>
+   <depend name="include/flixel/util/FlxRandom.h"/>
+  </file>
+  <file name="src/Cheese.cpp">
+   <depend name="include/Cheese.h"/>
+   <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/Food.h"/>
+   <depend name="include/flixel/FlxBasic.h"/>
+   <depend name="include/flixel/FlxObject.h"/>
+   <depend name="include/flixel/FlxSprite.h"/>
+   <depend name="include/flixel/interfaces/IFlxDestroyable.h"/>
+   <depend name="include/flixel/interfaces/IFlxPooled.h"/>
+   <depend name="include/flixel/util/FlxPoint.h"/>
+  </file>
+  <file name="src/Food.cpp">
+   <depend name="include/ExtendedSprite.h"/>
+   <depend name="include/Food.h"/>
    <depend name="include/flixel/FlxBasic.h"/>
    <depend name="include/flixel/FlxG.h"/>
    <depend name="include/flixel/FlxObject.h"/>

@@ -47,7 +47,9 @@ class PlayState extends FlxState {
 			hero.ateSpoiledFood();
 			obj1.kill();
 		//} else if(Type.getClassName(Type.getClass(obj1))=="PowerUp") {
-		} else if(Type.getClassName(Type.getClass(obj1))=="Pizza") {
+		} else if(Type.getClassName(Type.getClass(obj1))=="Pizza"
+		||Type.getClassName(Type.getClass(obj1))=="Cheese" 
+		||Type.getClassName(Type.getClass(obj1))=="TurkeyLeg") {
 			for(touch in FlxG.touches.list) {
 				if(touch.justPressed) {
 					hero.ateFood();
@@ -65,6 +67,16 @@ class PlayState extends FlxState {
 	private function spawnCashItem():Void {
 		var pickup : CashItem = cast(cashitems.recycle(), CashItem);
 		pickup.spawn();
+	}
+
+	private function spawnCheese():Void {
+		var cheese : Cheese = new Cheese();
+		hitContainer.add(cheese);
+	}
+
+	private function spawnTurkeyLeg():Void {
+		var turkeyLeg : TurkeyLeg = new TurkeyLeg();
+		hitContainer.add(turkeyLeg);
 	}
 
 	private function spawnPizza():Void {
@@ -199,7 +211,13 @@ class PlayState extends FlxState {
 			if(FlxRandom.float() < .25) {
 				spawnPowerDown();
 			} else if(FlxRandom.float() < .75) {
-				spawnPizza();
+				if(FlxRandom.float() < .25) {
+					spawnCheese();
+				} else if(FlxRandom.float() < 0.75) {
+					spawnTurkeyLeg();
+				} else {
+					spawnPizza();
+				}
 				//spawnPowerUp();
 			} else {
 				spawnCashItem();
