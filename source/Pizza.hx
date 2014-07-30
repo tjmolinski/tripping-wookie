@@ -7,5 +7,6 @@ class Pizza extends Food {
 		super();
 		loadGraphic("images/pizza.png", true, 64, 64);
 		scale.set(0.5, 0.5);
+		life = 5;
 	}
 }

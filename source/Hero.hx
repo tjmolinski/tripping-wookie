@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxSprite;
+import flixel.FlxObject;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
@@ -39,6 +40,8 @@ class Hero extends ExtendedSprite {
 	var cash : Int;
 
 	var timer : FlxText;
+
+	var itemInMouth : Food;
 
 	var currentState : PlayerState;
 
@@ -142,6 +145,17 @@ class Hero extends ExtendedSprite {
 		//This makes it look like the character is leaning into turns
 		angle = vel.x * 0.07;
 
+		if(itemInMouth != null) {
+			itemInMouth.x = x-15;
+			itemInMouth.y = y-20;
+
+			for(touch in FlxG.touches.list) {
+				if(touch.justPressed) {
+					chewOn(itemInMouth);
+				}
+			}
+		}
+
 		if(shitDecayBuffer > shitDecayTimer) {
 			shitDecayBuffer = 0;
 			shitSpeed -= SHIT_SPEED_DECAY;
@@ -168,14 +182,33 @@ class Hero extends ExtendedSprite {
 		shitSpeed -= 10;
 	}
 
-	public function ateFood():Void {
+	public function hasItemInMouth():Bool {
+		return itemInMouth != null;
+	}
+
+	public function putFoodInMouth(foodItem : FlxObject):Void {
+		itemInMouth = cast(foodItem, Food);
+	}
+
+	public function chewOn(item : Food):Void {
 		if(shitSpeed < stomachSize*STOMACH_INTERVAL) {
-			shitSpeed += 20;
+			shitSpeed += 1;
 		}
 
 		if(shitSpeed > stomachSize*STOMACH_INTERVAL) {
 			shitSpeed = stomachSize*STOMACH_INTERVAL;
 		}
+
+		if(item.chew()) {
+			swallow(item);
+			itemInMouth = null;
+		}
+	}
+
+	public function swallow(item : Food):Void {
+		//TODO Something should happen when you swallow food like a boost
+		item.destroy();
+		item = null;
 	}
 
 	public function gotCash():Void {

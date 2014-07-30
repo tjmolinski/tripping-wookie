@@ -50,12 +50,10 @@ class PlayState extends FlxState {
 		} else if(Type.getClassName(Type.getClass(obj1))=="Pizza"
 		||Type.getClassName(Type.getClass(obj1))=="Cheese" 
 		||Type.getClassName(Type.getClass(obj1))=="TurkeyLeg") {
-			for(touch in FlxG.touches.list) {
-				if(touch.justPressed) {
-					hero.ateFood();
-					hitContainer.remove(obj1);
-					obj1.kill();
-				}
+			//TODO: Figure out how to get a catch all for this condition
+			if(!hero.hasItemInMouth()) {
+				hero.putFoodInMouth(obj1);
+				//hitContainer.remove(obj1);
 			}
 		} else {
 			hero.gotCash();

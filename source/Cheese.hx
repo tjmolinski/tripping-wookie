@@ -7,5 +7,6 @@ class Cheese extends Food {
 		super();
 		loadGraphic("images/cheese.png", true, 64, 64);
 		scale.set(0.5, 0.5);
+		life = 5;
 	}
 }
